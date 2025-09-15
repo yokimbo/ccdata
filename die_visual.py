@@ -7,17 +7,23 @@ die = Die()
 
 # Make some rolls, and store the results in a list.
 results = []
-for roll_num in range(1000):
-    result = die.roll()
-    results.append(result)
+# for roll_num in range(1000):
+#     result = die.roll()
+#     results.append(result)
+
+results = [die.roll() for _ in range(1000)]
 
 # Analyze the results.
 frequencies = []
 poss_results = range(1, die.num_sides+1)
-for value in poss_results:
-    frequency = results.count(value)
-    frequencies.append(frequency)
+# for value in poss_results:
+#     frequency = results.count(value)
+#     frequencies.append(frequency)
+
+frequencies = [results.count(value) for value in poss_results]
 
 # Visualize the results.
-fig = px.bar(x=poss_results, y=frequencies)
+title = "Results of Rolling One D6 1,000 Times"
+labels = {'x': 'Result', 'y': 'Frequency of Restult'}
+fig = px.bar(x=poss_results, y=frequencies, title=title, labels=labels)
 fig.show()
